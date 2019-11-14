@@ -1,0 +1,138 @@
+﻿@model IEnumerable<HomeBranchViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    @@font-face {
+        font-family: 'MyWebFont';
+        src: url('webfont.eot'); /* IE9 Compat Modes */
+        src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+             url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+             url('webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+             url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+    #welcom {
+        font-family: 'MyWebFont', Fallback, sans-serif;
+    }
+</style>
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {
+            "symbols": [
+                    {
+                        "title": "S&P 500",
+                        "proName": "OANDA:SPX500USD"
+                    },
+                    {
+                        "title": "Nasdaq 100",
+                        "proName": "OANDA:NAS100USD"
+                    },
+                    {
+                        "title": "EUR/USD",
+                        "proName": "FX_IDC:EURUSD"
+                    },
+                    {
+                        "title": "BTC/USD",
+                        "proName": "BITSTAMP:BTCUSD"
+                    },
+                    {
+                        "title": "ETH/USD",
+                        "proName": "BITSTAMP:ETHUSD"
+                    }
+                ],
+                "colorTheme": "dark",
+                "isTransparent": false,
+                "displayMode": "adaptive",
+                "locale": "uk"
+        }
+    </script>
+</div>
+
+
+<!-- TradingView Widget END -->
+<h1 id="welcom" style="text-align:center; margin:20px;">Welcome to PayCompute!</h1>
+<object style="width:50%;height:400px;float:left;"
+        data=" https://www.youtube.com/v/b9dj9gj8A2E?autoplay=1">
+</object>
+<head>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px; /* The height is 400 pixels */
+            width: 50%;
+            float: left; /* The width is the width of the web page */
+        }
+    </style>
+    <meta name="viewport" content="initial-scale=1.0,
+    width=device-width" />
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+        var location;
+        var platform = new H.service.Platform({
+            'apikey': 'KJFr27AzXRthZXfaW_N5I7vW-gDUX1XlENn-Uz5wQgI'
+        });
+
+        var address = '@Model.First().Address';
+        var geocodingParams = {
+            searchText: address
+        }
+
+
+        // Define a callback function to process the geocoding response:
+                    var onResult = function (result) {
+            var locations = result.Response.View[0].Result,
+                position,
+                marker;
+            // Add a marker for each location found
+            for (i = 0; i < locations.length; i++) {
+                position = {
+                    lat: locations[i].Location.DisplayPosition.Latitude,
+                    lng: locations[i].Location.DisplayPosition.Longitude
+                }
+            }
+            // Initialize and add the map
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 4, center: position });
+                var marker = new google.maps.Marker({ position: position, map: map });
+            }
+        // Get an instance of the geocoding service:
+        var geocoder = platform.getGeocodingService();
+
+            // Call the geocode method with the geocoding parameters,
+            // the callback and an error callback function (called if a
+            // communication error occurs):
+            geocoder.geocode(geocodingParams, onResult, function (e) {
+            alert(e);
+        });
+
+
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAlShMohZtthiPXd2yLUuo8RxIayp_BZc&callback=initMap">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $("#welcom").animate({ marginTop: "80px" }, 1000).animate({ fontSize: "100px" }, 1000)
+            .animate({ marginTop: "40px" }, 600).animate({ fontSize: "30px" }, 600);
+    </script>
+</body>
+

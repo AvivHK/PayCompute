@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("body").click(function(){
+            $("p").fadeToggle(2000);
+            $("h1").fadeToggle(2000);
+        });
+    });
+</script>
+
+
+
+<style>
+    p {
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 50px;
+        padding-top: 10px;
+    }
+
+    h1 {
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 10px;
+        padding-top: 50px;
+        text-shadow: 2px 2px pink;
+    }
+
+    .newspaper {
+        /* Old Chrome, Safari, Opera */
+        -webkit-column-count: 3;
+        -webkit-column-width: 100px;
+
+        /* Old Firefox */
+        -moz-column-count: 3;
+        -moz-column-width: 100px;
+
+        /* Statndard syntax */
+        column-count: 3;
+        column-width: 100px;
+    }
+</style>
+
+
+
+<h1>@ViewData["Title"]</h1>
+
+<p class="newspaper">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

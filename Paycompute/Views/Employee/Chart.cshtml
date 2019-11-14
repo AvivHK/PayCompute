@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Our Employees";
+}
+<!DOCTYPE html>
+<h2>@ViewData["Title"]</h2>
+
+
+<meta charset="utf-8">
+
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js"></script>
+
+<div id="viz" style="width:50%;height:50%;top:20%"></div>
+
+<script>
+    var visualization = d3plus.viz()
+        .container("#viz")
+        .data("/files/test.csv")
+         .type("tree_map")
+        .id("Position")
+        .depth(1)
+    .size("Count")
+    .draw()
+     
+</script>
+

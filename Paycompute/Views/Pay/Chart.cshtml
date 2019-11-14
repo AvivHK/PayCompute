@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Total Earnings by Name";
+}
+<!DOCTYPE html>
+<h2>@ViewData["Title"]</h2>
+<meta charset="utf-8">
+
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js"></script>
+
+<div id="viz"  style="width:50%;height:50%;top:20%;background-color:aqua;"></div>
+
+<script>
+
+    d3plus.viz()
+        .container("#viz")
+        .data("/files/pay.csv")
+        .type("pie")
+        .id("Full-Name")
+        .size("Ernings")
+        .draw()
+</script>
